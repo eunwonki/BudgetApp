@@ -16,6 +16,7 @@
 		667EC15A29ED85BC00432D2F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667EC15929ED85BC00432D2F /* CoreDataManager.swift */; };
 		667EC15D29ED899800432D2F /* AddBudgetCateogoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667EC15C29ED899800432D2F /* AddBudgetCateogoryView.swift */; };
 		667EC16029ED8B6500432D2F /* NumberFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667EC15F29ED8B6500432D2F /* NumberFormatter+Extension.swift */; };
+		66F757B329EEE06300A0E886 /* BudgetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F757B229EEE06300A0E886 /* BudgetListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		667EC15929ED85BC00432D2F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		667EC15C29ED899800432D2F /* AddBudgetCateogoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetCateogoryView.swift; sourceTree = "<group>"; };
 		667EC15F29ED8B6500432D2F /* NumberFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Extension.swift"; sourceTree = "<group>"; };
+		66F757B229EEE06300A0E886 /* BudgetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				667EC15C29ED899800432D2F /* AddBudgetCateogoryView.swift */,
+				66F757B229EEE06300A0E886 /* BudgetListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				667EC16029ED8B6500432D2F /* NumberFormatter+Extension.swift in Sources */,
+				66F757B329EEE06300A0E886 /* BudgetListView.swift in Sources */,
 				66416C3129ED81F30094C5D1 /* ContentView.swift in Sources */,
 				66416C2F29ED81F30094C5D1 /* BudgetApp.swift in Sources */,
 				66416C3E29ED83540094C5D1 /* BudgetModel.xcdatamodeld in Sources */,
