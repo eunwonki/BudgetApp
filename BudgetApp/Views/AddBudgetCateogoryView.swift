@@ -15,6 +15,12 @@ struct AddBudgetCateogoryView: View {
     @State var total: Double = 100
     @State var messages: [String] = []
     
+    private var budgetCategory: BudgetCategory?
+    
+    init(budgetCategory: BudgetCategory? = nil) {
+        self.budgetCategory = budgetCategory
+    }
+    
     var isFormValid: Bool {
         messages.removeAll()
         
@@ -29,16 +35,23 @@ struct AddBudgetCateogoryView: View {
         return messages.count == 0
     }
     
-    private func save() {
-        let budgetCategory = BudgetCategory(context: viewContext)
-        budgetCategory.title = title
-        budgetCategory.total = total
+    private func addOrUpdate() {
         
-        // save the context
+        if let budgetCategory {
+            let budget = BudgetCategory.byId(budgetCategory.objectID)
+            budget.title = title
+            budget.total = total
+        } else {
+            let budgetCategory = BudgetCategory(context: viewContext)
+            budgetCategory.title = title
+            budgetCategory.total = total
+        }
+        
         do {
             try viewContext.save()
+            dismiss()
         } catch {
-            print(error.localizedDescription)
+            print(error)
         }
     }
     
@@ -63,7 +76,16 @@ struct AddBudgetCateogoryView: View {
                     Text(message)
                 }
                 
-            }.toolbar {
+            }
+            
+            .onAppear {
+                if let budgetCategory {
+                    title = budgetCategory.title ?? ""
+                    total = budgetCategory.total
+                }
+            }
+            
+            .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Cancel") {
                         dismiss()
@@ -73,8 +95,7 @@ struct AddBudgetCateogoryView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
                         if isFormValid {
-                            save()
-                            dismiss()
+                            addOrUpdate()
                         }
                     }
                 }

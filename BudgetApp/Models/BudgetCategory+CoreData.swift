@@ -28,12 +28,26 @@ public class BudgetCategory: NSManagedObject {
         total - transactionTotal
     }
     
+    static var all: NSFetchRequest<BudgetCategory> {
+        let request = BudgetCategory.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "dateCreated", ascending: false)]
+        return request
+    }
+    
     private var transactionsArray: [Transaction] {
         guard let transactions = transactions else { return [] }
         let allTransactions = (transactions.allObjects as? [Transaction]) ?? []
         return allTransactions.sorted { t1, t2 in
             t1.dateCreated! > t2.dateCreated!
         }
+    }
+    
+    static func byId(_ id: NSManagedObjectID) -> BudgetCategory {
+        let vc = CoreDataManager.shared.viewContext
+        guard let budgetCategory = vc.object(with: id) as? BudgetCategory else {
+            fatalError("ID not found")
+        }
+        return budgetCategory
     }
     
     static func transactionByCategoryRequest(_ budgetCategory: BudgetCategory) -> NSFetchRequest<Transaction> {

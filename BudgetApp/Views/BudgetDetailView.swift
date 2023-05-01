@@ -28,6 +28,20 @@ struct BudgetDetailView: View {
         budgetCategory.addToTransactions(transaction)
         do {
             try context.save()
+            
+            // reset title and total
+            title = ""
+            total = ""
+            
+        } catch {
+            print(error)
+        }
+    }
+    
+    private func deleteTransaction(_ transaction: Transaction) {
+        context.delete(transaction)
+        do {
+            try context.save()
         } catch {
             print(error)
         }
@@ -64,12 +78,17 @@ struct BudgetDetailView: View {
                     Spacer()
                 }
             }
+            .frame(maxHeight: 250)
+            .padding([.bottom], 20)
             
-            BudgetSummaryView(budgetCategory: budgetCategory)
-            
-            TransactionListView(
-                request: BudgetCategory.transactionByCategoryRequest(
-                    budgetCategory))
+            VStack {
+                
+                BudgetSummaryView(budgetCategory: budgetCategory)
+                
+                TransactionListView(
+                    request: BudgetCategory.transactionByCategoryRequest(
+                        budgetCategory), onDeleteTransaction: deleteTransaction)
+            }
             
             Spacer()
         }.padding()
